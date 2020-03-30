@@ -5,7 +5,7 @@
 #include <cinttypes>
 #include <iostream>
 #include <vector>
-
+#include "/host/ramulator-pim/zsim-ramulator/misc/hooks/zsim_hooks.h"
 #include "benchmark.h"
 #include "builder.h"
 #include "command_line.h"
@@ -45,9 +45,11 @@ to relabel the graph, we use the heuristic in WorthRelabelling.
 using namespace std;
 
 size_t OrderedCount(const Graph &g) {
+  zsim_roi_begin();
   size_t total = 0;
   #pragma omp parallel for reduction(+ : total) schedule(dynamic, 64)
   for (NodeID u=0; u < g.num_nodes(); u++) {
+    zsim_PIM_function_begin();
     for (NodeID v : g.out_neigh(u)) {
       if (v > u)
         break;
@@ -61,7 +63,9 @@ size_t OrderedCount(const Graph &g) {
           total++;
       }
     }
+    zsim_PIM_function_end();
   }
+  zsim_roi_end();
   return total;
 }
 

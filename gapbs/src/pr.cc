@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
-
+#include "/host/ramulator-pim/zsim-ramulator/misc/hooks/zsim_hooks.h"
 #include "benchmark.h"
 #include "builder.h"
 #include "command_line.h"
@@ -33,11 +33,13 @@ const float kDamp = 0.85;
 
 pvector<ScoreT> PageRankPull(const Graph &g, int max_iters,
                              double epsilon = 0) {
+  zsim_roi_begin();
   const ScoreT init_score = 1.0f / g.num_nodes();
   const ScoreT base_score = (1.0f - kDamp) / g.num_nodes();
   pvector<ScoreT> scores(g.num_nodes(), init_score);
   pvector<ScoreT> outgoing_contrib(g.num_nodes());
   for (int iter=0; iter < max_iters; iter++) {
+    zsim_PIM_function_begin();
     double error = 0;
     #pragma omp parallel for
     for (NodeID n=0; n < g.num_nodes(); n++)
@@ -51,10 +53,12 @@ pvector<ScoreT> PageRankPull(const Graph &g, int max_iters,
       scores[u] = base_score + kDamp * incoming_total;
       error += fabs(scores[u] - old_score);
     }
-    printf(" %2d    %lf\n", iter, error);
+    //printf(" %2d    %lf\n", iter, error);
     if (error < epsilon)
       break;
+    zsim_PIM_function_end();
   }
+  zsim_roi_end();
   return scores;
 }
 
