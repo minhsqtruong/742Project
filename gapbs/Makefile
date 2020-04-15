@@ -3,6 +3,8 @@
 CXX_FLAGS += -std=c++11 -O3 -Wall
 PAR_FLAG = -fopenmp
 
+C = 0
+CHK = 128
 ifneq (,$(findstring icpc,$(CXX)))
 	PAR_FLAG = -openmp
 endif
@@ -16,14 +18,15 @@ ifneq ($(SERIAL), 1)
 	CXX_FLAGS += $(PAR_FLAG)
 endif
 
-KERNELS = bc bfs cc cc_sv pr sssp tc
+KERNELS =  bfs pr tc
 SUITE = $(KERNELS) converter
 
 .PHONY: all
 all: $(SUITE)
 
 % : src/%.cc src/*.h
-	$(CXX) $(CXX_FLAGS) $< -o $@
+
+	$(CXX) $(CXX_FLAGS) $< -o $@ -DCORE=$(C) -DCHUNK=$(CHK)
 
 # Testing
 include test/test.mk

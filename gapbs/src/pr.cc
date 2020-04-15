@@ -11,7 +11,17 @@
 #include "graph.h"
 #include "pvector.h"
 
+#infdef CORE
+  #define CORE 0
+#endif
 
+#infdef CHUNK
+  #define CHUNK 128
+#endif
+
+#define LB CORE*CHUNK
+
+#define UB ((CORE + 1)*CHUNK)
 /*
 GAP Benchmark Suite
 Kernel: PageRank (PR)
@@ -38,14 +48,15 @@ pvector<ScoreT> PageRankPull(const Graph &g, int max_iters,
   const ScoreT base_score = (1.0f - kDamp) / g.num_nodes();
   pvector<ScoreT> scores(g.num_nodes(), init_score);
   pvector<ScoreT> outgoing_contrib(g.num_nodes());
+  // max_iters = 1
   for (int iter=0; iter < max_iters; iter++) {
     zsim_PIM_function_begin();
     double error = 0;
-    #pragma omp parallel for
+    //#pragma omp parallel for
     for (NodeID n=0; n < g.num_nodes(); n++)
       outgoing_contrib[n] = scores[n] / g.out_degree(n);
-    #pragma omp parallel for reduction(+ : error) schedule(dynamic, 64)
-    for (NodeID u=0; u < g.num_nodes(); u++) {
+    //#pragma omp parallel for reduction(+ : error) schedule(dynamic, 64)
+    for (NodeID u=LB; u < UB; u++) {
       ScoreT incoming_total = 0;
       for (NodeID v : g.in_neigh(u))
         incoming_total += outgoing_contrib[v];

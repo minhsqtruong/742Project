@@ -41,14 +41,27 @@ degree distribution is sufficiently non-uniform. To decide whether or not
 to relabel the graph, we use the heuristic in WorthRelabelling.
 */
 
+#define NUM_CORES
+
+#infdef CORE
+  #define CORE 0
+#endif
+
+#infdef CHUNK
+  #define CHUNK 128
+#endif
+
+#define LB CORE*CHUNK
+
+#define UB ((CORE + 1)*CHUNK)
 
 using namespace std;
 
 size_t OrderedCount(const Graph &g) {
   zsim_roi_begin();
   size_t total = 0;
-  #pragma omp parallel for reduction(+ : total) schedule(dynamic, 64)
-  for (NodeID u=0; u < g.num_nodes(); u++) {
+//  #pragma omp parallel for reduction(+ : total)
+  for (NodeID u=LB; u < UB; u++) {
     zsim_PIM_function_begin();
     for (NodeID v : g.out_neigh(u)) {
       if (v > u)
@@ -129,10 +142,12 @@ bool TCVerifier(const Graph &g, size_t test_total) {
 
 int main(int argc, char* argv[]) {
   CLApp cli(argc, argv, "triangle count");
+
   if (!cli.ParseArgs())
     return -1;
   Builder b(cli);
   Graph g = b.MakeGraph();
+
   if (g.directed()) {
     cout << "Input graph is directed but tc requires undirected" << endl;
     return -2;
