@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "/host/ramulator-pim/zsim-ramulator/misc/hooks/zsim_hooks.h"
+//#include "~/git/ramulator-pim/zsim-ramulator/misc/hooks/zsim_hooks.h"
 #include "benchmark.h"
 #include "bitmap.h"
 #include "builder.h"
@@ -45,12 +45,12 @@ using namespace std;
 
 int64_t BUStep(const Graph &g, pvector<NodeID> &parent, Bitmap &front,
                Bitmap &next) {
-  zsim_roi_begin();
+  //zsim_roi_begin();
   int64_t awake_count = 0;
   next.reset();
   #pragma omp parallel for reduction(+ : awake_count) schedule(dynamic, 1024)
   for (NodeID u=0; u < g.num_nodes(); u++) {
-    zsim_PIM_function_begin();
+    //zsim_PIM_function_begin();
     if (parent[u] < 0) {
       for (NodeID v : g.in_neigh(u)) {
         if (front.get_bit(v)) {
@@ -61,23 +61,23 @@ int64_t BUStep(const Graph &g, pvector<NodeID> &parent, Bitmap &front,
         }
       }
     }
-    zsim_PIM_function_end();
+    //zsim_PIM_function_end();
   }
-  zsim_roi_end();
+  //zsim_roi_end();
   return awake_count;
 }
 
 
 int64_t TDStep(const Graph &g, pvector<NodeID> &parent,
                SlidingQueue<NodeID> &queue) {
-  zsim_roi_begin();
+  //zsim_roi_begin();
   int64_t scout_count = 0;
   #pragma omp parallel
   {
     QueueBuffer<NodeID> lqueue(queue);
     #pragma omp for reduction(+ : scout_count)
     for (auto q_iter = queue.begin(); q_iter < queue.end(); q_iter++) {
-      zsim_PIM_function_begin();
+      //zsim_PIM_function_begin();
       NodeID u = *q_iter;
       for (NodeID v : g.out_neigh(u)) {
         NodeID curr_val = parent[v];
@@ -88,11 +88,11 @@ int64_t TDStep(const Graph &g, pvector<NodeID> &parent,
           }
         }
       }
-      zsim_PIM_function_end();
+      //zsim_PIM_function_end();
     }
     lqueue.flush();
   }
-  zsim_roi_end();
+  //zsim_roi_end();
   return scout_count;
 }
 

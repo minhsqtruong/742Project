@@ -5,7 +5,7 @@
 #include <cinttypes>
 #include <iostream>
 #include <vector>
-#include "/host/ramulator-pim/zsim-ramulator/misc/hooks/zsim_hooks.h"
+//#include "~/git/ramulator-pim/zsim-ramulator/misc/hooks/zsim_hooks.h"
 #include "benchmark.h"
 #include "builder.h"
 #include "command_line.h"
@@ -41,28 +41,35 @@ degree distribution is sufficiently non-uniform. To decide whether or not
 to relabel the graph, we use the heuristic in WorthRelabelling.
 */
 
-#define NUM_CORES
 
-#infdef CORE
-  #define CORE 0
+
+#ifndef CID
+  #define CID 0
 #endif
 
-#infdef CHUNK
-  #define CHUNK 128
-#endif
+#ifndef CORES
+  #define CORES 16
+#endif  
 
-#define LB CORE*CHUNK
+//globals, don't use em
+//
+ int CHUNK = 0xFFFFFFFF;
+ 
+ int LB = 0;
+ int UB = 0xFFFFFFFF;
+ //#define LB CORE*CHUNK
 
-#define UB ((CORE + 1)*CHUNK)
+//#define UB ((CORE + 1)*CHUNK)
 
 using namespace std;
 
 size_t OrderedCount(const Graph &g) {
-  zsim_roi_begin();
+  //zsim_roi_begin();
   size_t total = 0;
-//  #pragma omp parallel for reduction(+ : total)
-  for (NodeID u=LB; u < UB; u++) {
-    zsim_PIM_function_begin();
+  int loop_bound = (UB<g.num_nodes())?UB:g.num_nodes();
+  //  #pragma omp parallel for reduction(+ : total)
+  for (NodeID u=LB; u < loop_bound; u++) {
+    //zsim_PIM_function_begin();
     for (NodeID v : g.out_neigh(u)) {
       if (v > u)
         break;
@@ -76,9 +83,9 @@ size_t OrderedCount(const Graph &g) {
           total++;
       }
     }
-    zsim_PIM_function_end();
+    //zsim_PIM_function_end();
   }
-  zsim_roi_end();
+  //zsim_roi_end();
   return total;
 }
 
@@ -147,7 +154,10 @@ int main(int argc, char* argv[]) {
     return -1;
   Builder b(cli);
   Graph g = b.MakeGraph();
-
+  CHUNK = g.num_nodes()/CORES;
+  
+  LB = CID * CHUNK;
+  UB = (CID + 1) * CHUNK;
   if (g.directed()) {
     cout << "Input graph is directed but tc requires undirected" << endl;
     return -2;
