@@ -4,24 +4,27 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
-#include "/host/ramulator-pim/zsim-ramulator/misc/hooks/zsim_hooks.h"
+//#include "~/git/ramulator-pim/zsim-ramulator/misc/hooks/zsim_hooks.h"
 #include "benchmark.h"
 #include "builder.h"
 #include "command_line.h"
 #include "graph.h"
 #include "pvector.h"
 
-#infdef CORE
-  #define CORE 0
+#ifndef CID
+  #define CID 0
 #endif
 
-#infdef CHUNK
-  #define CHUNK 128
+#ifndef CORES
+  #define CORES 16
 #endif
 
-#define LB CORE*CHUNK
+int CHUNK = 0xFFFFFFFF;
+int LB = 0;
+int UB = 0xFFFFFFFF;
+//#define LB CORE*CHUNK
 
-#define UB ((CORE + 1)*CHUNK)
+//#define UB ((CORE + 1)*CHUNK)
 /*
 GAP Benchmark Suite
 Kernel: PageRank (PR)
@@ -43,20 +46,21 @@ const float kDamp = 0.85;
 
 pvector<ScoreT> PageRankPull(const Graph &g, int max_iters,
                              double epsilon = 0) {
-  zsim_roi_begin();
+  //zsim_roi_begin();
   const ScoreT init_score = 1.0f / g.num_nodes();
   const ScoreT base_score = (1.0f - kDamp) / g.num_nodes();
   pvector<ScoreT> scores(g.num_nodes(), init_score);
   pvector<ScoreT> outgoing_contrib(g.num_nodes());
+  int loop_bound = (UB < g.num_nodes())?UB:g.num_nodes();
   // max_iters = 1
   for (int iter=0; iter < max_iters; iter++) {
-    zsim_PIM_function_begin();
+    //zsim_PIM_function_begin();
     double error = 0;
     //#pragma omp parallel for
     for (NodeID n=0; n < g.num_nodes(); n++)
       outgoing_contrib[n] = scores[n] / g.out_degree(n);
     //#pragma omp parallel for reduction(+ : error) schedule(dynamic, 64)
-    for (NodeID u=LB; u < UB; u++) {
+    for (NodeID u=LB; u < loop_bound; u++) {
       ScoreT incoming_total = 0;
       for (NodeID v : g.in_neigh(u))
         incoming_total += outgoing_contrib[v];
@@ -67,9 +71,9 @@ pvector<ScoreT> PageRankPull(const Graph &g, int max_iters,
     //printf(" %2d    %lf\n", iter, error);
     if (error < epsilon)
       break;
-    zsim_PIM_function_end();
+    //zsim_PIM_function_end();
   }
-  zsim_roi_end();
+  //zsim_roi_end();
   return scores;
 }
 
@@ -114,6 +118,9 @@ int main(int argc, char* argv[]) {
     return -1;
   Builder b(cli);
   Graph g = b.MakeGraph();
+  CHUNK = g.num_nodes()/CORES;
+  LB = CID * CHUNK;
+  UB = (CID + 1) * CHUNK;
   auto PRBound = [&cli] (const Graph &g) {
     return PageRankPull(g, cli.max_iters(), cli.tolerance());
   };
