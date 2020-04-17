@@ -1961,14 +1961,17 @@ DRAMCtrl::Rank::processRefreshEvent()
             // PIM: May be causing extraneous precharges now
             if (!prechargeEvent.scheduled())
             {
-                for (auto &b : banks) {
-                    if (b.openRow != Bank::NO_ROW) {
-                        memory.prechargeBank(*this, b, curTick(), false);
-                    } else {
-                        b.actAllowedAt = std::max(b.actAllowedAt, (curTick() + memory.tRP));
-                        b.preAllowedAt = std::max(b.preAllowedAt, curTick());
-                    }
-                }
+                warn("Expected precharge event not found. Scheduling precharge.");
+                schedule(this->prechargeEvent, (curTick() + memory.tRP));
+
+                // for (auto &b : banks) {
+                //     if (b.openRow != Bank::NO_ROW) {
+                //         memory.prechargeBank(*this, b, curTick(), false);
+                //     } else {
+                //         b.actAllowedAt = std::max(b.actAllowedAt, (curTick() + memory.tRP));
+                //         b.preAllowedAt = std::max(b.preAllowedAt, curTick());
+                //     }
+                // }
             }
             // will start refresh when pwrState transitions to IDLE
         }
