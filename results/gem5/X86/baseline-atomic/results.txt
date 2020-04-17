@@ -1,0 +1,119 @@
+
+Simulation Time in Seconds
+bfs/hcircuit/stats.txt:sim_seconds                                  2.393171                       # Number of seconds simulated
+bfs/internet/stats.txt:sim_seconds                                  0.983692                       # Number of seconds simulated
+bfs/germany_osm/stats.txt:sim_seconds                                 60.998436                       # Number of seconds simulated
+pr/internet/stats.txt:sim_seconds                                  1.050122                       # Number of seconds simulated
+write_results:grep 'sim_seconds' -R --exclude=$resultsFile * >> $resultsPath
+
+Host Time in Seconds
+bfs/hcircuit/stats.txt:host_seconds                                  2140.67                       # Real time elapsed on the host
+bfs/internet/stats.txt:host_seconds                                   922.21                       # Real time elapsed on the host
+bfs/germany_osm/stats.txt:host_seconds                                 52394.27                       # Real time elapsed on the host
+pr/internet/stats.txt:host_seconds                                   876.42                       # Real time elapsed on the host
+write_results:grep 'host_seconds' -R --exclude=$resultsFile * >> $resultsPath
+
+Simulation Ticks
+bfs/hcircuit/stats.txt:sim_ticks                                2393170840851                       # Number of ticks simulated
+bfs/internet/stats.txt:sim_ticks                                983692316043                       # Number of ticks simulated
+bfs/germany_osm/stats.txt:sim_ticks                                60998436252042                       # Number of ticks simulated
+pr/internet/stats.txt:sim_ticks                                1050122279616                       # Number of ticks simulated
+write_results:grep 'sim_ticks' -R --exclude=$resultsFile * >> $resultsPath
+
+Simulation Operations
+bfs/hcircuit/stats.txt:sim_ops                                    4967595375                       # Number of ops (including micro ops) simulated
+bfs/internet/stats.txt:sim_ops                                    2040509326                       # Number of ops (including micro ops) simulated
+bfs/germany_osm/stats.txt:sim_ops                                  126380173270                       # Number of ops (including micro ops) simulated
+pr/internet/stats.txt:sim_ops                                    2169766596                       # Number of ops (including micro ops) simulated
+write_results:grep 'sim_ops' -R --exclude=$resultsFile * >> $resultsPath
+
+Integer ALU Operations
+bfs/hcircuit/stats.txt:system.cpu.op_class::IntAlu                3601849614     72.51%     73.05% # Class of executed instruction
+bfs/internet/stats.txt:system.cpu.op_class::IntAlu                1481762358     72.62%     73.14% # Class of executed instruction
+bfs/germany_osm/stats.txt:system.cpu.op_class::IntAlu               92759304998     73.40%     73.86% # Class of executed instruction
+pr/internet/stats.txt:system.cpu.op_class::IntAlu                1549071201     71.39%     71.97% # Class of executed instruction
+write_results:grep 'system.cpu.op_class::IntAlu' -R --exclude=$resultsFile * >> $resultsPath
+
+Integer Mult Operations
+bfs/hcircuit/stats.txt:system.cpu.op_class::IntMult                  5051418      0.10%     73.15% # Class of executed instruction
+bfs/internet/stats.txt:system.cpu.op_class::IntMult                  2385877      0.12%     73.25% # Class of executed instruction
+bfs/germany_osm/stats.txt:system.cpu.op_class::IntMult                173859216      0.14%     74.00% # Class of executed instruction
+pr/internet/stats.txt:system.cpu.op_class::IntMult                  2382282      0.11%     72.08% # Class of executed instruction
+write_results:grep 'system.cpu.op_class::IntMult' -R --exclude=$resultsFile * >> $resultsPath
+
+Integer Division Operations
+bfs/hcircuit/stats.txt:system.cpu.op_class::IntDiv                  53902110      1.09%     74.24% # Class of executed instruction
+bfs/internet/stats.txt:system.cpu.op_class::IntDiv                  21785739      1.07%     74.32% # Class of executed instruction
+bfs/germany_osm/stats.txt:system.cpu.op_class::IntDiv                 866007992      0.69%     74.68% # Class of executed instruction
+pr/internet/stats.txt:system.cpu.op_class::IntDiv                  21785928      1.00%     73.08% # Class of executed instruction
+write_results:grep 'system.cpu.op_class::IntDiv' -R --exclude=$resultsFile * >> $resultsPath
+
+Register Reads
+bfs/hcircuit/stats.txt:system.cpu.num_int_register_reads         10086382297                       # number of times the integer registers were read
+bfs/internet/stats.txt:system.cpu.num_int_register_reads          4141909929                       # number of times the integer registers were read
+bfs/germany_osm/stats.txt:system.cpu.num_int_register_reads        253191421182                       # number of times the integer registers were read
+pr/internet/stats.txt:system.cpu.num_int_register_reads          4302114728                       # number of times the integer registers were read
+write_results:grep 'system.cpu.num_int_register_reads' -R --exclude=$resultsFile * >> $resultsPath
+
+Register Writes
+bfs/hcircuit/stats.txt:system.cpu.num_int_register_writes         3983073493                       # number of times the integer registers were written
+bfs/internet/stats.txt:system.cpu.num_int_register_writes         1637675473                       # number of times the integer registers were written
+bfs/germany_osm/stats.txt:system.cpu.num_int_register_writes       100712617436                       # number of times the integer registers were written
+pr/internet/stats.txt:system.cpu.num_int_register_writes         1706904473                       # number of times the integer registers were written
+write_results:grep 'system.cpu.num_int_register_writes' -R --exclude=$resultsFile * >> $resultsPath
+
+Memory Reads
+bfs/hcircuit/stats.txt:system.cpu.op_class::MemRead                767080115     15.44%     90.53% # Class of executed instruction
+bfs/internet/stats.txt:system.cpu.op_class::MemRead                315962086     15.48%     90.62% # Class of executed instruction
+bfs/germany_osm/stats.txt:system.cpu.op_class::MemRead              19454760145     15.39%     90.94% # Class of executed instruction
+pr/internet/stats.txt:system.cpu.op_class::MemRead                330154936     15.22%     90.68% # Class of executed instruction
+write_results:grep 'system.cpu.op_class::MemRead' -R --exclude=$resultsFile * >> $resultsPath
+
+Memory Writes
+bfs/hcircuit/stats.txt:system.cpu.op_class::MemWrite               458489615      9.23%     99.76% # Class of executed instruction
+bfs/internet/stats.txt:system.cpu.op_class::MemWrite               186979496      9.16%     99.78% # Class of executed instruction
+bfs/germany_osm/stats.txt:system.cpu.op_class::MemWrite             11154725275      8.83%     99.76% # Class of executed instruction
+pr/internet/stats.txt:system.cpu.op_class::MemWrite               186951711      8.62%     99.29% # Class of executed instruction
+write_results:grep 'system.cpu.op_class::MemWrite' -R --exclude=$resultsFile * >> $resultsPath
+
+DCache Demand Hits
+bfs/hcircuit/stats.txt:system.cpu.dcache.demand_hits::total       1235321654                       # number of demand (read+write) hits
+bfs/internet/stats.txt:system.cpu.dcache.demand_hits::total        505648993                       # number of demand (read+write) hits
+bfs/germany_osm/stats.txt:system.cpu.dcache.demand_hits::total      30715942183                       # number of demand (read+write) hits
+pr/internet/stats.txt:system.cpu.dcache.demand_hits::total        529186131                       # number of demand (read+write) hits
+write_results:grep 'dcache.demand_hits::total' -R --exclude=$resultsFile * >> $resultsPath
+
+DCache Demand Misses
+bfs/hcircuit/stats.txt:system.cpu.dcache.demand_misses::total        3741373                       # number of demand (read+write) misses
+bfs/internet/stats.txt:system.cpu.dcache.demand_misses::total        1816056                       # number of demand (read+write) misses
+bfs/germany_osm/stats.txt:system.cpu.dcache.demand_misses::total      193797825                       # number of demand (read+write) misses
+pr/internet/stats.txt:system.cpu.dcache.demand_misses::total        3874732                       # number of demand (read+write) misses
+write_results:grep 'dcache.demand_misses::total' -R --exclude=$resultsFile * >> $resultsPath
+
+DCache Demand Miss Rate
+bfs/hcircuit/stats.txt:system.cpu.dcache.demand_miss_rate::total     0.003020                       # miss rate for demand accesses
+bfs/internet/stats.txt:system.cpu.dcache.demand_miss_rate::total     0.003579                       # miss rate for demand accesses
+bfs/germany_osm/stats.txt:system.cpu.dcache.demand_miss_rate::total     0.006270                       # miss rate for demand accesses
+pr/internet/stats.txt:system.cpu.dcache.demand_miss_rate::total     0.007269                       # miss rate for demand accesses
+write_results:grep 'dcache.demand_miss_rate::total' -R --exclude=$resultsFile * >> $resultsPath
+
+L2 Cache Demand Hits
+bfs/hcircuit/stats.txt:system.l2.demand_hits::.cpu.data              2572403                       # number of demand (read+write) hits
+bfs/internet/stats.txt:system.l2.demand_hits::.cpu.data              1230223                       # number of demand (read+write) hits
+bfs/germany_osm/stats.txt:system.l2.demand_hits::.cpu.data             90687036                       # number of demand (read+write) hits
+pr/internet/stats.txt:system.l2.demand_hits::.cpu.data              2444853                       # number of demand (read+write) hits
+write_results:grep 'l2.demand_hits::.cpu.data' -R --exclude=$resultsFile * >> $resultsPath
+
+L2 Cache Demand Misses
+bfs/hcircuit/stats.txt:system.l2.demand_misses::.cpu.data            1168970                       # number of demand (read+write) misses
+bfs/internet/stats.txt:system.l2.demand_misses::.cpu.data             585833                       # number of demand (read+write) misses
+bfs/germany_osm/stats.txt:system.l2.demand_misses::.cpu.data          103110789                       # number of demand (read+write) misses
+pr/internet/stats.txt:system.l2.demand_misses::.cpu.data            1429879                       # number of demand (read+write) misses
+write_results:grep 'l2.demand_misses::.cpu.data' -R --exclude=$resultsFile * >> $resultsPath
+
+L2 Cache Demand Miss Rate
+bfs/hcircuit/stats.txt:system.l2.demand_miss_rate::.cpu.data        0.312444                       # miss rate for demand accesses
+bfs/internet/stats.txt:system.l2.demand_miss_rate::.cpu.data        0.322585                       # miss rate for demand accesses
+bfs/germany_osm/stats.txt:system.l2.demand_miss_rate::.cpu.data        0.532053                       # miss rate for demand accesses
+pr/internet/stats.txt:system.l2.demand_miss_rate::.cpu.data        0.369027                       # miss rate for demand accesses
+write_results:grep 'l2.demand_miss_rate::.cpu.data' -R --exclude=$resultsFile * >> $resultsPath

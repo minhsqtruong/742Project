@@ -1,0 +1,1 @@
+~/gem5/build/X86/gem5.opt -d ./results/gem5/X86/$testname/$b/$i ~/gem5/configs/example/se.py --cmd ./gapbs/$b --options "$options" --cpu-type=AtomicSimpleCPU --num-cpus=1 --cpu-clock='2.4GHz' --caches --l1i_size=32768 --l1d_size=32768 --l2cache --l2_size=2097152 --mem-type=DDR3_1600_8x8 --mem-size=2147483648

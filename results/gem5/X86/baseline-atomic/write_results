@@ -1,0 +1,73 @@
+#!/bin/bash
+
+resultsFile=results.txt
+resultsPath=$PWD/results.txt
+touch $resultsFile
+
+echo "" >> $resultsPath
+echo "Simulation Time in Seconds" >> $resultsPath
+grep 'sim_seconds' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Host Time in Seconds" >> $resultsPath
+grep 'host_seconds' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Simulation Ticks" >> $resultsPath
+grep 'sim_ticks' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Simulation Operations" >> $resultsPath
+grep 'sim_ops' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Integer ALU Operations" >> $resultsPath
+grep 'system.cpu.op_class::IntAlu' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Integer Mult Operations" >> $resultsPath
+grep 'system.cpu.op_class::IntMult' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Integer Division Operations" >> $resultsPath
+grep 'system.cpu.op_class::IntDiv' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Register Reads" >> $resultsPath
+grep 'system.cpu.num_int_register_reads' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Register Writes" >> $resultsPath
+grep 'system.cpu.num_int_register_writes' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Memory Reads" >> $resultsPath
+grep 'system.cpu.op_class::MemRead' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Memory Writes" >> $resultsPath
+grep 'system.cpu.op_class::MemWrite' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "DCache Demand Hits" >> $resultsPath
+grep 'dcache.demand_hits::total' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "DCache Demand Misses" >> $resultsPath
+grep 'dcache.demand_misses::total' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "DCache Demand Miss Rate" >> $resultsPath
+grep 'dcache.demand_miss_rate::total' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "L2 Cache Demand Hits" >> $resultsPath
+grep 'l2.demand_hits::.cpu.data' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "L2 Cache Demand Misses" >> $resultsPath
+grep 'l2.demand_misses::.cpu.data' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "L2 Cache Demand Miss Rate" >> $resultsPath
+grep 'l2.demand_miss_rate::.cpu.data' -R --exclude=$resultsFile * >> $resultsPath
