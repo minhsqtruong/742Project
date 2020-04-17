@@ -1958,20 +1958,10 @@ DRAMCtrl::Rank::processRefreshEvent()
             // or have outstanding ACT,RD/WR,Auto-PRE sequence scheduled
             // should have outstanding precharge event in this case
             // PIM: This is a fix because events weren't getting scheduled.
-            // PIM: May be causing extraneous precharges now
             if (!prechargeEvent.scheduled())
             {
-                warn("Expected precharge event not found. Scheduling precharge.");
-                schedule(this->prechargeEvent, (curTick() + memory.tRP));
-
-                // for (auto &b : banks) {
-                //     if (b.openRow != Bank::NO_ROW) {
-                //         memory.prechargeBank(*this, b, curTick(), false);
-                //     } else {
-                //         b.actAllowedAt = std::max(b.actAllowedAt, (curTick() + memory.tRP));
-                //         b.preAllowedAt = std::max(b.preAllowedAt, curTick());
-                //     }
-                // }
+                warn("Expected precharge event not found. Scheduling refresh event.");
+                schedulePowerEvent(PWR_REF, curTick());
             }
             // will start refresh when pwrState transitions to IDLE
         }
