@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# printf "\n\n ---------------- PRINT GEM5 OPTIONS -----------------------\n\n"
+# ~/FHE/gem5/build/X86/gem5.opt ~/FHE/gem5/configs/example/se.py -h
+
+# printf "\n\n -------------- BASELINE GEM5 SIMULATION ---------------- \n\n"
+# ~/gem5/build/X86/gem5.opt -d ./results/gem5/X86/$testname/$b/$i   ~/gem5/configs/example/se.py --cmd ./gapbs_clean/$b --options "$options" \
+#     -m 10000000000000 \ # How many ticks to run
+#     --cpu-type=TimingSimpleCPU --num-cpus=1 --cpu-clock=CPU_CLOCK \
+#     --bp-type=BP_TYPE --indirect-bp-type=INDIRECT_BP_TYPE \
+#     --caches --cacheline_size=CACHELINE_SIZE \
+#     --l1i_size=32768 --l1i_assoc=L1I_ASSOC --l1i-hwp-type=L1I_HWP_TYPE \
+#     --l1d_size=32768 --l1d_assoc=L1D_ASSOC --l1d-hwp-type=L1D_HWP_TYPE \
+#     --l2cache --l2_size=2097152 --num-l2caches=1 --l2_assoc=L2_ASSOC --l2-hwp-type=L2_HWP_TYPE \
+#     --l3-size=L3_SIZE --num-l3caches=1 --l3_assoc=L3_ASSOC \
+#     --mem-type=DDR4_2400_8x8 --mem-size=2147483648
+
+
+# printf "\n\n -------------- PIM GEM5 SIMULATION ---------------- \n\n"
+# ~/FHE/gem5/build/X86/gem5.opt -d ./results/gem5/X86/$testname/$b/$i  ~/FHE/gem5/configs/example/se.py --cmd ./gapbs_clean/$b --options "$options" \
+#     -m 10000000000000 \
+#     --cpu-type=NonCachingSimpleCPU --num-cpus=4 --cpu-clock=CPU_CLOCK \
+#     --bp-type=BP_TYPE --indirect-bp-type=INDIRECT_BP_TYPE \
+#     --caches  --cacheline_size=CACHELINE_SIZE \
+#     --l1i_size=32768 --l1i_assoc=L1I_ASSOC --l1d_size=32768 --l1d_assoc=L1D_ASSOC --l1i-hwp-type=L1I_HWP_TYPE --l1d-hwp-type=L1D_HWP_TYPE \
+#     --l2cache --l2_size=2097152 --num-l2caches=1 --l2_assoc=L2_ASSOC --l2-hwp-type=L2_HWP_TYPE \
+#     --l3-size=L3_SIZE --num-l3caches=1 --l3_assoc=L3_ASSOC \
+#     --mem-type=HMC_2500_1x32 --mem-size=2147483648 --mem-channels=1 --mem-ranks=1 --burst-length=256 \ # NOTE: burst length must equal cacheline_size
+#     --xbar-width=32 --xbar-frequency='1GHz' --xbar-frontend-latency=1 --xbar-forward-latency=2 --xbar-response-latency=2 --number-mem-crossbar=4 \
+#     --num-links-cntrollers=4 --link-buffer-size-req=10 --link-buffer-size-rsp=10 --link-latency='4.6ns' --link-frequency-'10GHz' --link-controller-frquency='625MHz' --link-ctrl-latency=4 --num-lanes-per-link=16 --num-serial-links=4 --serial-link-addr-range='1GB' \
+#     --enable-global-monitor --enable-link-monitor \
+#     --mem-chunk=4 --xbar-buffer-size-req=10 --xbar-buffer-size-resp=10 \
+#     --arch="distributed" \ # This is what we want to change ("same", "distributed", "mixed")
+#     --hmc-dev-num-vaults=16 --hmc-dev-vault-size='256MB'
+
+# benchmarks=(bfs pr tc)
+# inputs=(hcircuit internet bone010 cage14 uk-2005 germany_osm)
+
+testname=pim-test-noprotect
+benchmarks=(pr)
+inputs=(ash85)
+
+for b in "${benchmarks[@]}"
+do
+    for i in "${inputs[@]}"
+    do
+        # gapbs_binary='./gapbs/'$b'_0; ./gapbs/'$b'_1; ./gapbs/'$b'_2; ./gapbs/'$b'_3; ./gapbs/'$b'_4; ./gapbs/'$b'_5; ./gapbs/'$b'_6; ./gapbs/'$b'_7; ./gapbs/'$b'_8; ./gapbs/'$b'_9; ./gapbs/'$b'_10; ./gapbs/'$b'_11; ./gapbs/'$b'_12; ./gapbs/'$b'_13; ./gapbs/'$b'_14; ./gapbs/'$b'_15' 
+        # gapbs_options='-n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx'
+        gapbs_binary='./gapbs/'$b'_0'
+        gapbs_options='-n 1 -s -f ./edgelist_data/'$i'.mtx'
+        hello_binary='/home/mckenzie/FHE/gem5/tests/test-progs/hello/bin/x86/linux/hello'
+        hello_options=''
+        trap 'previous_command=$this_command; this_command=$BASH_COMMAND' DEBUG
+        ~/FHE/gem5/build/X86/gem5.opt -d ./results/gem5/X86/$testname/$b/$i   ~/FHE/gem5/configs/example/se.py --cmd "$gapbs_binary" --options "$gapbs_options" \
+            --cpu-type=TimingSimpleCPU --num-cpus=2 \
+            --mem-type=HMC_2500_1x32 --mem-channels=1 --mem-ranks=1
+	echo "$previous_command" > "./results/gem5/X86/$testname/$b/$i/command.txt"
+        done
+done

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+NUMCORE=16
+
+let end=$NUMCORE-1
+for i in $(seq 0 $end); do make id=$i; done
