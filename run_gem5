@@ -33,27 +33,59 @@
 #     --arch="distributed" \ # This is what we want to change ("same", "distributed", "mixed")
 #     --hmc-dev-num-vaults=16 --hmc-dev-vault-size='256MB'
 
+# gapbs_binary='./gapbs/'$b'_0; ./gapbs/'$b'_1; ./gapbs/'$b'_2; ./gapbs/'$b'_3; ./gapbs/'$b'_4; ./gapbs/'$b'_5; ./gapbs/'$b'_6; ./gapbs/'$b'_7; ./gapbs/'$b'_8; ./gapbs/'$b'_9; ./gapbs/'$b'_10; ./gapbs/'$b'_11; ./gapbs/'$b'_12; ./gapbs/'$b'_13; ./gapbs/'$b'_14; ./gapbs/'$b'_15' 
+# gapbs_options='-n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx'
 # benchmarks=(bfs pr tc)
 # inputs=(hcircuit internet bone010 cage14 uk-2005 germany_osm)
 
-testname=pim-test-noprotect
+testname=pim-test-multicore
 benchmarks=(pr)
 inputs=(ash85)
+cores=16
+coreids=(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
+hello_binary='./hello'
+hello_options=''
+full_binary=''
+full_options=''
 
 for b in "${benchmarks[@]}"
 do
     for i in "${inputs[@]}"
     do
-        # gapbs_binary='./gapbs/'$b'_0; ./gapbs/'$b'_1; ./gapbs/'$b'_2; ./gapbs/'$b'_3; ./gapbs/'$b'_4; ./gapbs/'$b'_5; ./gapbs/'$b'_6; ./gapbs/'$b'_7; ./gapbs/'$b'_8; ./gapbs/'$b'_9; ./gapbs/'$b'_10; ./gapbs/'$b'_11; ./gapbs/'$b'_12; ./gapbs/'$b'_13; ./gapbs/'$b'_14; ./gapbs/'$b'_15' 
-        # gapbs_options='-n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx; -n 1 -f ./edgelist_data/'$i'.mtx'
-        gapbs_binary='./gapbs/'$b'_0'
-        gapbs_options='-n 1 -s -f ./edgelist_data/'$i'.mtx'
-        hello_binary='/home/mckenzie/FHE/gem5/tests/test-progs/hello/bin/x86/linux/hello'
-        hello_options=''
-        trap 'previous_command=$this_command; this_command=$BASH_COMMAND' DEBUG
-        ~/FHE/gem5/build/X86/gem5.opt -d ./results/gem5/X86/$testname/$b/$i   ~/FHE/gem5/configs/example/se.py --cmd "$gapbs_binary" --options "$gapbs_options" \
-            --cpu-type=TimingSimpleCPU --num-cpus=2 \
-            --mem-type=HMC_2500_1x32 --mem-channels=1 --mem-ranks=1
-	echo "$previous_command" > "./results/gem5/X86/$testname/$b/$i/command.txt"
+        for c in "${coreids[@]}"
+        do
+            full_binary=''
+            full_options=''
+            gapbs_binary='./gapbs/'$b'_'$c
+            gapbs_options='-n 1 -s -f ./edgelist_data/'$i'.mtx'
+            let end=$cores-1
+            for n in $(seq 0 $end)
+            do
+                if [ $n == $c ]
+                then
+                    full_binary="$full_binary$gapbs_binary"
+                    full_options="$full_options$gapbs_options"
+                else
+                    full_binary="$full_binary$hello_binary"
+                    full_options="$full_options$hello_options"
+                fi
+
+                if [ $n != $end ]
+                then
+                    full_binary="$full_binary; "
+                    full_options="$full_options; "
+                fi
+            done
+
+            echo ""
+            echo $full_binary
+            echo $full_options
+
+            trap 'previous_command=$this_command; this_command=$BASH_COMMAND' DEBUG
+            ~/FHE/gem5/build/X86/gem5.opt -d ./results/gem5/X86/$testname/$b/$i/$c   ~/FHE/gem5/configs/example/se.py --cmd "$full_binary" --options "$full_options" \
+                --cpu-type=TimingSimpleCPU --num-cpus=$cores \
+                --mem-type=HMC_2500_1x32 --mem-channels=1 --mem-ranks=1
+            echo "$previous_command" > "./results/gem5/X86/$testname/$b/$i/$c/command.txt"
         done
+    done
 done

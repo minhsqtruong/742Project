@@ -154,7 +154,7 @@ int main(int argc, char* argv[]) {
   Builder b(cli);
   Graph* g_ptr;
   Graph g;
-  if (CID == 0)
+  if (true)
   {
     g = b.MakeGraph();
     g_ptr = &g;
