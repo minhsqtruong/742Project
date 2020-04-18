@@ -38,11 +38,11 @@
 # benchmarks=(bfs pr tc)
 # inputs=(hcircuit internet bone010 cage14 uk-2005 germany_osm)
 
-testname=pim-test-multicore
-benchmarks=(pr)
+testname=pim-test-multivault
+benchmarks=(tc)
 inputs=(ash85)
 cores=16
-coreids=(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
+coreids=(0)
 hello_binary='./hello'
 hello_options=''
 full_binary=''
@@ -84,7 +84,10 @@ do
             trap 'previous_command=$this_command; this_command=$BASH_COMMAND' DEBUG
             ~/FHE/gem5/build/X86/gem5.opt -d ./results/gem5/X86/$testname/$b/$i/$c   ~/FHE/gem5/configs/example/se.py --cmd "$full_binary" --options "$full_options" \
                 --cpu-type=TimingSimpleCPU --num-cpus=$cores \
-                --mem-type=HMC_2500_1x32 --mem-channels=1 --mem-ranks=1
+                --mem-type=HMC_2500_1x32 --mem-channels=1 --mem-ranks=1 \
+                --hmc-dev-num-vaults=256 --hmc-dev-vault-size='16MB' --number-mem-crossbar=$cores
+            # num_vaults * vault_size should always = 4GB (4294967296 B)according to HMC specification
+            # 16 cores will always have access to 256 MB = 268435456 B
             echo "$previous_command" > "./results/gem5/X86/$testname/$b/$i/$c/command.txt"
         done
     done

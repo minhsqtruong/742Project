@@ -90,8 +90,8 @@ def create_mem_ctrl(cls, r, i, nbr_mem_ctrls, intlv_bits, intlv_size):
                                           xor_low_bit + intlv_bits - 1,
                                       intlvBits = intlv_bits,
                                       intlvMatch = i)
-    print("Mem Ctrl Address Range: ", end="")
-    print(r.size())
+    # print("Mem Ctrl Address Range: ", end="")
+    # print(r.size())
     return ctrl
 
 def config_mem(options, system):
@@ -192,7 +192,8 @@ def config_mem(options, system):
     # Connect the controllers to the membus
     for i in range(len(subsystem.mem_ctrls)):
         if opt_mem_type == "HMC_2500_1x32":
-            subsystem.mem_ctrls[i].port = xbar[i].master # dividing by the number of crossbars available (I guess this is truncating?? -> could also use %)
+            numx = options.number_mem_crossbar
+            subsystem.mem_ctrls[i].port = xbar[i%numx].master # dividing by the number of crossbars available (Use / to truncate and stack, or % to distribute))
             # Set memory device size. There is an independent controller for
             # each vault. All vaults are same size.
             subsystem.mem_ctrls[i].device_size = options.hmc_dev_vault_size
