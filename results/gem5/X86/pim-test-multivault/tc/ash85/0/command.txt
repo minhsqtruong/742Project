@@ -1,0 +1,1 @@
+~/FHE/gem5/build/X86/gem5.opt -d ./results/gem5/X86/$testname/$b/$i/$c ~/FHE/gem5/configs/example/se.py --cmd "$full_binary" --options "$full_options" --cpu-type=TimingSimpleCPU --num-cpus=$cores --mem-type=HMC_2500_1x32 --mem-channels=1 --mem-ranks=1 --hmc-dev-num-vaults=256 --hmc-dev-vault-size='16MB' --number-mem-crossbar=$cores
