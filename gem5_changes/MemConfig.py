@@ -118,7 +118,7 @@ def config_mem(options, system):
     opt_dram_powerdown = getattr(options, "enable_dram_powerdown", None)
 
     if opt_mem_type == "HMC_2500_1x32":
-        # HMChost = HMC.config_hmc_host_ctrl(options, system)
+        HMChost = HMC.config_hmc_host_ctrl(options, system)
         HMC.config_hmc_dev(options, system)
         subsystem = system.hmc_dev
         xbar = system.hmc_dev.xbar # It's those crossbars that have to connect to the underlying mem device. We need masters for those.

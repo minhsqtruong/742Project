@@ -275,13 +275,20 @@ if options.ruby:
             system.cpu[i].dtb.walker.port = ruby_port.slave
 else:
     MemClass = Simulation.setMemClass(options)
-    MemConfig.config_mem(options, system)
-    if options.mem_type == "HMC_2500_1x32":
-        system.system_port = system.hmc_dev.xbar[0].slave
-    else:
+    if options.mem_type != "HMC_2500_1x32":
         system.membus = SystemXBar()
         system.system_port = system.membus.slave
-    CacheConfig.config_cache(options, system)
+        CacheConfig.config_cache(options, system)
+        MemConfig.config_mem(options, system)
+
+    if options.mem_type == "HMC_2500_1x32":
+        MemConfig.config_mem(options, system)
+        if options.pim :
+            system.system_port = system.hmc_dev.xbar[0].slave
+        else:
+            system.system_port = system.membus.slave
+        CacheConfig.config_cache(options, system)
+
     config_filesystem(system, options)
 
 root = Root(full_system = False, system = system)

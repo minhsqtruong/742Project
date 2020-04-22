@@ -126,6 +126,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 import argparse
+import math
 
 import m5
 from m5.objects import *
@@ -170,23 +171,22 @@ def add_options(parser):
     # PIM: Automatically make the same number of crossbars = number of serial links = number of vaults = number of CPUS
 
     # *****************************SERIAL LINK PARAMETERS**********************
-    # PIM: We're not using the controller anymore, so there are no serial links
-    # # Number of serial links controllers [1]
-    # # parser.add_option("--num-links-controllers", default=4, action="store",
-    # #                     type="int", help="Number of serial links")
-    # # PIM: Automatically make the same number of crossbars = number of serial links = number of vaults = number of CPUS
+    # Number of serial links controllers [1]
+    parser.add_option("--num-links-controllers", default=4, action="store",
+                        type="int", help="Number of serial links")
+    # PIM: Automatically make the same number of crossbars = number of serial links = number of vaults = number of CPUS
 
-    # # Number of packets (not flits) to store at the request side of the serial
-    # #  link. This number should be adjusted to achive required bandwidth
-    # parser.add_option("--link-buffer-size-req", default=10, action="store",
-    #                     type="int", help="Number of packets to buffer at the\
-    #                     request side of the serial link")
+    # Number of packets (not flits) to store at the request side of the serial
+    #  link. This number should be adjusted to achive required bandwidth
+    parser.add_option("--link-buffer-size-req", default=10, action="store",
+                        type="int", help="Number of packets to buffer at the\
+                        request side of the serial link")
 
-    # # Number of packets (not flits) to store at the response side of the serial
-    # #  link. This number should be adjusted to achive required bandwidth
-    # parser.add_option("--link-buffer-size-rsp", default=10, action="store",
-    #                     type="int", help="Number of packets to buffer at the\
-    #                     response side of the serial link")
+    # Number of packets (not flits) to store at the response side of the serial
+    #  link. This number should be adjusted to achive required bandwidth
+    parser.add_option("--link-buffer-size-rsp", default=10, action="store",
+                        type="int", help="Number of packets to buffer at the\
+                        response side of the serial link")
 
     # # Latency of the serial link composed by SER/DES latency (1.6ns [4]) plus
     # # the PCB trace latency (3ns Estimated based on [5])
@@ -194,17 +194,17 @@ def add_options(parser):
     # #                     help="Latency of the serial links")
     # # PIM: This isn't even used. It's just total control latency
 
-    # # Clock frequency of the each serial link(SerDes) [1]
-    # parser.add_option("--link-frequency", default='10GHz', type="string",
-    #                     help="Clock Frequency of the serial links")
+    # Clock frequency of the each serial link(SerDes) [1]
+    parser.add_option("--link-frequency", default='10GHz', type="string",
+                        help="Clock Frequency of the serial links")
 
-    # # Clock frequency of serial link Controller[6]
-    # # clk_hmc[Mhz]= num_lanes_per_link * lane_speed [Gbits/s] /
-    # # data_path_width * 10^6
-    # # clk_hmc[Mhz]= 16 * 10 Gbps / 256 * 10^6 = 625 Mhz
-    # parser.add_option("--link-controller-frequency", default='625MHz',
-    #                     type="string", help="Clock Frequency of the link\
-    #                     controller")
+    # Clock frequency of serial link Controller[6]
+    # clk_hmc[Mhz]= num_lanes_per_link * lane_speed [Gbits/s] /
+    # data_path_width * 10^6
+    # clk_hmc[Mhz]= 16 * 10 Gbps / 256 * 10^6 = 625 Mhz
+    parser.add_option("--link-controller-frequency", default='625MHz',
+                        type="string", help="Clock Frequency of the link\
+                        controller")
 
     # # Latency of the serial link controller to process the packets[1][6]
     # # (ClockDomain = 625 Mhz )
@@ -214,44 +214,39 @@ def add_options(parser):
     # #                     controller to process the packet")
     # # PIM: Not even used. Account for changes in total control latency
 
-    # # total_ctrl_latency = link_ctrl_latency + link_latency
-    # # total_ctrl_latency = 4(Cycles) * 1.6 ns +  4.6 ns
-    # parser.add_option("--total-ctrl-latency", default='11ns', type="string",
-    #                     help="The latency experienced by every packet\
-    #                     regardless of size of packet")
-    # # PIM: We may want to lower these latencies... not sure what role the "controllers" play in PIM
+    # total_ctrl_latency = link_ctrl_latency + link_latency
+    # total_ctrl_latency = 4(Cycles) * 1.6 ns +  4.6 ns
+    parser.add_option("--total-ctrl-latency", default='11ns', type="string",
+                        help="The latency experienced by every packet\
+                        regardless of size of packet")
 
-    # # Number of parallel lanes in each serial link [1]
-    # parser.add_option("--num-lanes-per-link", default=16, action="store",
-    #                     type="int", help="Number of lanes per each link")
-    # # PIM: Change this to 32, we wanna expose the full DRAM bandwidth to the CPUs directly
+    # Number of parallel lanes in each serial link [1]
+    parser.add_option("--num-lanes-per-link", default=16, action="store",
+                        type="int", help="Number of lanes per each link")
 
-    # # # Number of serial links [1]
-    # # parser.add_option("--num-serial-links", default=4, action="store",
-    # #                     type="int", help="Number of serial links")
-    # # PIM: Automatically make the same number of crossbars = number of serial links = number of vaults = number of CPUS
+    # Number of serial links [1]
+    parser.add_option("--num-serial-links", default=4, action="store",
+                        type="int", help="Number of serial links")
 
-    # # speed of each lane of serial link - SerDes serial interface 10 Gb/s
-    # parser.add_option("--serial-link-speed", default=10, action="store",
-    #                     type="int", help="Gbs/s speed of each lane of serial\
-    #                     link")
-    # # PIM: We probably wanna raise this. Find the bandwidth that DRAM is capable of and match that.
+    # speed of each lane of serial link - SerDes serial interface 10 Gb/s
+    parser.add_option("--serial-link-speed", default=10, action="store",
+                        type="int", help="Gbs/s speed of each lane of serial\
+                        link")
 
-    # # address range for each of the serial links
-    # parser.add_option("--serial-link-addr-range", default='4GB', type="string",
-    #                     help="memory range for each of the serial links.\
-    #                     Default: 4GB")
-    # # PIM: We're making everything fully connected. Change from 1GB to 4GB
-    # # PIM: This has to match size of vault * number of vaults
+    # address range for each of the serial links
+    parser.add_option("--serial-link-addr-range", default='1GB', type="string",
+                        help="memory range for each of the serial links.\
+                        Default: 1GB")
+    # This should just distribute the total memory evenly across the links
 
     # *****************************PERFORMANCE MONITORING*********************
-    # # The main monitor behind the HMC Controller
-    # parser.add_option("--enable-global-monitor", action="store_true",
-    #                     help="The main monitor behind the HMC Controller")
+    # The main monitor behind the HMC Controller
+    parser.add_option("--enable-global-monitor", action="store_true",
+                        help="The main monitor behind the HMC Controller")
 
     # # The link performance monitors
-    # parser.add_option("--enable-link-monitor", action="store_true",
-    #                     help="The link monitors")
+    parser.add_option("--enable-link-monitor", action="store_true",
+                        help="The link monitors")
     # PIM: The support for monitors was broken, add back in if necessary
 
     # link aggregator enable - put a cross between buffers & links
@@ -281,6 +276,7 @@ def add_options(parser):
     parser.add_option("--xbar-buffer-size-resp", default=10, action="store",
                         type="int", help="Number of packets to buffer at the\
                         response side of the crossbar")
+
     # HMC device architecture. It affects the HMC host controller as well
     # parser.add_option("--arch", type="choice", choices=["same", "distributed",
     #                     "mixed"], default="distributed", help="same: HMC with\
@@ -318,117 +314,77 @@ def add_options(parser):
     #                     256")
     # PIM: May want to play with this depending on the size of data we're accessing. Especially if we bypass caches. (If possible, DRAM row buffer is also 256 bytes). 
     # PIM: I don't think this is actually doing anything after all
-# PIM: We're just not gonna use the controller anymore... connect directly to the memory
-# # configure HMC host controller
-# def config_hmc_host_ctrl(opt, system):
 
-#     # create HMC host controller
-#     system.hmc_host = SubSystem()
+    # ***************************** PIM **************************
+    parser.add_option("--pim", action="store_true",
+                        help="Use this HMC controller for a PIM architecture")
 
-#     clk = '100GHz'
-#     vd = VoltageDomain(voltage='1V')
 
-#     # PIM: Make a mem xbar for each serial link to connect to the outside world
-#     # PIM: Make all external connections directly to system.memx[i].slave
-#     num_memx = opt.hmc_dev_num_vaults
-#     system.memx = [NoncoherentXBar(width=opt.xbar_width,
-#                                     frontend_latency=3,
-#                                     forward_latency=4,
-#                                     response_latency=2) for i in range(num_memx)]
+# configure HMC host controller
+def config_hmc_host_ctrl(opt, system):
 
-#     # PIM: Finish out memx config
-#     cd = SrcClockDomain(clock=clk, voltage_domain=vd)
-#     for i in range(num_memx):
-#         system.memx[i].badaddr_responder = BadAddr()
-#         system.memx[i].default = Self.badaddr_responder.pio
-#         system.memx[i].clk_domain = cd
+    # PIM configuration doesn't use the external memory controller
+    if opt.pim:
+        return
 
-#     # create memory ranges for the serial links
-#     slar = convert.toMemorySize(opt.serial_link_addr_range)
-#     HMC_debug("Serial Link Address Range", slar)
+    # create HMC host controller
+    system.hmc_host = SubSystem()
 
-#     # Memmory ranges of serial link for arch-0. Same as the ranges of vault
-#     # controllers (4 vaults to 1 serial link)
-#     # if opt.arch == "same":
-#     #     ser_ranges = [AddrRange(0, (4*slar)-1) for i in
-#     #                   range(opt.num_serial_links)]
-#     # # Memmory ranges of serial link for arch-1. Distributed range accross
-#     # # links
-#     # if opt.arch == "distributed":
-#     #     ser_ranges = [AddrRange(i*slar, ((i+1)*slar)-1) for i in
-#     #                   range(opt.num_serial_links)]
-#     # # Memmory ranges of serial link for arch-2 'Mixed' address distribution
-#     # # over links
-#     # # 2 can access everything, 2 can access only local. Only the local links are connected to the mem bus. The other two shouldn't even get serial links...?
-#     # if opt.arch == "mixed":
-#     #     ser_range0 = AddrRange(0, (1*slar)-1)
-#     #     ser_range1 = AddrRange(1*slar, 2*slar-1)
-#     #     ser_range2 = AddrRange(0, (4*slar)-1)
-#     #     ser_range3 = AddrRange(0, (4*slar)-1)
-#     #     ser_ranges = [ser_range0, ser_range1, ser_range2, ser_range3]
+    # Create additional crossbar for arch1
+    clk = '100GHz'
+    vd = VoltageDomain(voltage='1V')
+    system.membus = NoncoherentXBar(width=8)
+    system.membus.badaddr_responder = BadAddr()
+    system.membus.default = Self.badaddr_responder.pio
+    system.membus.width = 8
+    system.membus.frontend_latency = 3
+    system.membus.forward_latency = 4
+    system.membus.response_latency = 2
+    cd = SrcClockDomain(clock=clk, voltage_domain=vd)
+    system.membus.clk_domain = cd
 
-#     # Serial link Controller with 16 SerDes links at 10 Gbps with serial link
-#     # ranges w.r.t to architecture 
-#     # PIM: Give all serial links full access to the whole memory.
-#     num_serial_links = opt.hmc_dev_num_vaults
-#     sl = [SerialLink(ranges=slar,
-#                      req_size=opt.link_buffer_size_req,
-#                      resp_size=opt.link_buffer_size_rsp,
-#                      num_lanes=opt.num_lanes_per_link,
-#                      link_speed=opt.serial_link_speed,
-#                      delay=opt.total_ctrl_latency) for i in range(num_serial_links)]
-#     system.hmc_host.seriallink = sl
+    # create memory ranges for the serial links
+    slar = convert.toMemorySize(opt.serial_link_addr_range)
 
-#     # enable global monitor
-#     if opt.enable_global_monitor:
-#         system.hmc_host.lmonitor = [CommMonitor() for i in
-#                                     range(num_serial_links)]
+    # Memmory ranges of serial link - Everything fully connected.
+    # TODO: Add back in other architecture layouts if we wanna explore
+    ser_ranges = [AddrRange(start=i*slar, size=slar) for i in
+                    range(opt.num_serial_links)]
 
-#     # set the clock frequency for serial link
-#     for i in range(num_serial_links):
-#         clk = opt.link_controller_frequency
-#         vd = VoltageDomain(voltage='1V')
-#         scd = SrcClockDomain(clock=clk, voltage_domain=vd)
-#         system.hmc_host.seriallink[i].clk_domain = scd
+    # Serial link Controller with 16 SerDes links at 10 Gbps with serial link
+    # ranges w.r.t to architecture
+    sl = [SerialLink(ranges=ser_ranges[i],
+                     req_size=opt.link_buffer_size_req,
+                     resp_size=opt.link_buffer_size_rsp,
+                     num_lanes=opt.num_lanes_per_link,
+                     link_speed=opt.serial_link_speed,
+                     delay=opt.total_ctrl_latency) for i in
+          range(opt.num_serial_links)]
+    system.hmc_host.seriallink = sl
 
-#     # PIM: Connect all links to a memx to the outside world
-#     hh = system.hmc_host
-#     for i in range(num_serial_links):
-#         if opt.enable_global_monitor:
-#             system.memx[i].master = hh.lmonitor[i].slave
-#             hh.lmonitor[i].master = hh.seriallink[i].slave
-#         else:
-#             system.memx[i].master = hh.seriallink[i].slave
+    # enable global monitor
+    if opt.enable_global_monitor:
+        system.hmc_host.lmonitor = [CommMonitor() for i in
+                                    range(opt.num_serial_links)]
 
-#     # if opt.arch == "distributed":
-#     #     mb = system.membus
-#     #     for i in range(opt.num_links_controllers):
-#     #         if opt.enable_global_monitor:
-#     #             mb.master = hh.lmonitor[i].slave
-#     #             hh.lmonitor[i].master = hh.seriallink[i].slave
-#     #         else:
-#     #             mb.master = hh.seriallink[i].slave
-#     # if opt.arch == "mixed":
-#     #     mb = system.membus
-#     #     if opt.enable_global_monitor:
-#     #         mb.master = hh.lmonitor[0].slave
-#     #         hh.lmonitor[0].master = hh.seriallink[0].slave
-#     #         mb.master = hh.lmonitor[1].slave
-#     #         hh.lmonitor[1].master = hh.seriallink[1].slave
-#     #     else:
-#     #         mb.master = hh.seriallink[0].slave # This is a problem. Not all seial links are getting assigned. The two that access everything are never connected.
-#     #         mb.master = hh.seriallink[1].slave
+    # set the clock frequency for serial link
+    for i in range(opt.num_serial_links):
+        clk = opt.link_controller_frequency
+        vd = VoltageDomain(voltage='1V')
+        scd = SrcClockDomain(clock=clk, voltage_domain=vd)
+        system.hmc_host.seriallink[i].clk_domain = scd
 
-#     # if opt.arch == "same":
-#     #     mb = system.membus
-#     #     for i in range(opt.num_links_controllers): # four serial links, all connected to all 4 GB of memory.
-#     #         if opt.enable_global_monitor:
-#     #             mb.master = hh.lmonitor[i].slave
-#     #             hh.lmonitor[i].master = hh.seriallink[i].slave
-#     #         else:
-#     #             mb.master = hh.seriallink[i].slave
+    # Connect membus/traffic gen to Serial Link Controller
+    hh = system.hmc_host
+    mb = system.membus
+    for i in range(opt.num_links_controllers): # four serial links, all connected to all 4 GB of memory.
+        if opt.enable_global_monitor:
+            mb.master = hh.lmonitor[i].slave
+            hh.lmonitor[i].master = hh.seriallink[i].slave
+        else:
+            mb.master = hh.seriallink[i].slave
 
-#     return system
+    return system
 
 
 # Create an HMC device
@@ -460,10 +416,6 @@ def config_hmc_dev(opt, system):
                           range(opt.hmc_dev_num_vaults)]
     system.mem_ranges = addr_ranges_vaults # This gets past to mem_config to make more controllers -> this is a controller per vault
 
-    # if opt.enable_link_monitor:
-    #     lm = [CommMonitor() for i in range(num_links_controllers)]
-    #     system.hmc_dev.lmonitor = lm
-
     # HMC Crossbars located in its logic-base (LoB)
     xb = [NoncoherentXBar(width=opt.xbar_width, # Keep this 32, that's the same as the DRAM bandwidth per vault
                           frontend_latency=opt.xbar_frontend_latency,
@@ -478,13 +430,20 @@ def config_hmc_dev(opt, system):
         scd = SrcClockDomain(clock=clk, voltage_domain=vd)
         system.hmc_dev.xbar[i].clk_domain = scd
 
-    # Attach a serial link to each crossbar/s
-    # for i in range(number_mem_crossbar):
-    #     if opt.enable_link_monitor:
-    #         system.hmc_host.seriallink[i].master = system.hmc_dev.lmonitor[i].slave
-    #         system.hmc_dev.lmonitor[i].master = system.hmc_dev.xbar[i].slave
-    #     else:
-    #         system.hmc_host.seriallink[i].master = system.hmc_dev.xbar[i].slave
+    if not opt.pim:
+        if opt.enable_link_monitor:
+            lm = [CommMonitor() for i in range(num_links_controllers)]
+            system.hmc_dev.lmonitor = lm
+
+        # Distribute serial links across xbars
+        stride = int(math.floor(number_mem_crossbar / opt.num_serial_links))
+
+        for i in range(len(system.hmc_host.seriallink)):
+            if opt.enable_link_monitor:
+                system.hmc_host.seriallink[i].master = system.hmc_dev.lmonitor[i].slave
+                system.hmc_dev.lmonitor[i].master = system.hmc_dev.xbar[i*stride].slave
+            else:
+                system.hmc_host.seriallink[i].master = system.hmc_dev.xbar[i*stride].slave
 
     # PIM: Connect All Crossbars together to give all CPUs full access to memory (Copied below from "same")
     numx = len(system.hmc_dev.xbar)
@@ -515,69 +474,3 @@ def config_hmc_dev(opt, system):
                 # Don't connect the xbar to itself
                 pass
 
-
-
-
-
-    # Connecting xbar with each other for request arriving at the wrong xbar,
-    # then it will be forward to correct xbar. Bridge is used to connect xbars
-    # if opt.arch == "same":
-    #     numx = len(system.hmc_dev.xbar)
-
-    #     # create a list of buffers
-    #     system.hmc_dev.buffers = [Bridge(req_size=opt.xbar_buffer_size_req,
-    #                                      resp_size=opt.xbar_buffer_size_resp)
-    #                               for i in range(numx*(numx-1))] # number of crossbars = 4 * number of other crossbars = 4 - 1 (don't connect to yurself) -> 12 bridges. One from every crossbar to every ther crossbar. (are these only one way bridges??)
-
-    #     # Buffer iterator
-    #     it = iter(range(len(system.hmc_dev.buffers)))
-
-    #     # necesarry to add system_port to one of the xbar
-    #     # system.system_port = system.hmc_dev.xbar[3].slave
-
-    #     # iterate over all the crossbars and connect them as required
-    #     for i in range(numx): # for each crossbar
-    #         for j in range(numx): # connect it to every other crossbar
-    #             # connect xbar to all other xbars except itself
-    #             if i != j:
-    #                 # get the next index of buffer
-    #                 index = it.next()
-
-    #                 # Change the default values for ranges of bridge
-    #                 system.hmc_dev.buffers[index].ranges = system.mem_ranges[ # There are 16 mem ranges for 16 vaults ... there are only 4 crossbars
-    #                         j * int(opt.mem_chunk): # each cross bar gets access to mem_chunk number of vaults ... but this isn't really an independent variable :P
-    #                         (j + 1) * int(opt.mem_chunk)] # The range that this bridge can now access is the range of the jth crossbar
-
-    #                 # Connect the bridge between corssbars (I think you can have multiple slaves feeding one master and vice versa, so this is ok.)
-    #                 system.hmc_dev.xbar[i].master = system.hmc_dev.buffers[index].slave
-    #                 system.hmc_dev.buffers[index].master = system.hmc_dev.xbar[j].slave
-    #             else:
-    #                 # Don't connect the xbar to itself
-    #                 pass
-
-    # Two crossbars are connected to all other crossbars-Other 2 vault
-    # can only direct traffic to it local vaults
-    # if opt.arch == "mixed":
-    #     system.hmc_dev.buffer30 = Bridge(ranges=system.mem_ranges[0:4])
-    #     system.hmc_dev.xbar[3].master = system.hmc_dev.buffer30.slave
-    #     system.hmc_dev.buffer30.master = system.hmc_dev.xbar[0].slave
-
-    #     system.hmc_dev.buffer31 = Bridge(ranges=system.mem_ranges[4:8])
-    #     system.hmc_dev.xbar[3].master = system.hmc_dev.buffer31.slave
-    #     system.hmc_dev.buffer31.master = system.hmc_dev.xbar[1].slave
-
-    #     system.hmc_dev.buffer32 = Bridge(ranges=system.mem_ranges[8:12])
-    #     system.hmc_dev.xbar[3].master = system.hmc_dev.buffer32.slave
-    #     system.hmc_dev.buffer32.master = system.hmc_dev.xbar[2].slave
-
-    #     system.hmc_dev.buffer20 = Bridge(ranges=system.mem_ranges[0:4])
-    #     system.hmc_dev.xbar[2].master = system.hmc_dev.buffer20.slave
-    #     system.hmc_dev.buffer20.master = system.hmc_dev.xbar[0].slave
-
-    #     system.hmc_dev.buffer21 = Bridge(ranges=system.mem_ranges[4:8])
-    #     system.hmc_dev.xbar[2].master = system.hmc_dev.buffer21.slave
-    #     system.hmc_dev.buffer21.master = system.hmc_dev.xbar[1].slave
-
-    #     system.hmc_dev.buffer23 = Bridge(ranges=system.mem_ranges[12:16])
-    #     system.hmc_dev.xbar[2].master = system.hmc_dev.buffer23.slave
-    #     system.hmc_dev.buffer23.master = system.hmc_dev.xbar[3].slave

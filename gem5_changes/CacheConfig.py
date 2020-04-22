@@ -196,14 +196,14 @@ def config_cache(options, system):
 
         system.cpu[i].createInterruptController()
         if options.l2cache:
-            if options.mem_type == "HMC_2500_1x32":
+            if options.mem_type == "HMC_2500_1x32" and options.pim:
                 system.cpu[i].connectAllPorts(system.tol2bus, system.hmc_dev.xbar[i])
             else:
                 system.cpu[i].connectAllPorts(system.tol2bus, system.membus)
         elif options.external_memory_system:
             system.cpu[i].connectUncachedPorts(system.membus)
         else:
-            if options.mem_type == "HMC_2500_1x32":
+            if options.mem_type == "HMC_2500_1x32" and options.pim:
                 system.cpu[i].connectAllPorts(system.hmc_dev.xbar[i])
             else:
                 system.cpu[i].connectAllPorts(system.membus)
