@@ -318,7 +318,8 @@ def add_options(parser):
     # ***************************** PIM **************************
     parser.add_option("--pim", action="store_true",
                         help="Use this HMC controller for a PIM architecture")
-
+    parser.add_option("--xbar-type", type="choice", choices=["point-to-point","ring","mesh"],
+                        default="point-to-point", help="type of network to use for HMC xbar interconnect. Default: point-to-point")
 
 # configure HMC host controller
 def config_hmc_host_ctrl(opt, system):
@@ -416,6 +417,11 @@ def config_hmc_dev(opt, system):
                           range(opt.hmc_dev_num_vaults)]
     system.mem_ranges = addr_ranges_vaults # This gets past to mem_config to make more controllers -> this is a controller per vault
 
+    # Create memranges for each crossbar
+    xbar_memranges = [[] for i in range(number_mem_crossbar)]
+    for i in range(len(system.mem_ranges)):
+        xbar_memranges[i%number_mem_crossbar].append(system.mem_ranges[i])
+
     # HMC Crossbars located in its logic-base (LoB)
     xb = [NoncoherentXBar(width=opt.xbar_width, # Keep this 32, that's the same as the DRAM bandwidth per vault
                           frontend_latency=opt.xbar_frontend_latency,
@@ -447,30 +453,48 @@ def config_hmc_dev(opt, system):
 
     # PIM: Connect All Crossbars together to give all CPUs full access to memory (Copied below from "same")
     numx = len(system.hmc_dev.xbar)
-    
-    # create a list of buffers
-    system.hmc_dev.buffers = [Bridge(req_size=opt.xbar_buffer_size_req,
+
+    # iterate over all the crossbars and connect them as required
+    if opt.xbar_type == "point-to-point":
+        # All crossbars are connected to all other crossbars
+        # create a list of buffers
+        system.hmc_dev.buffers = [Bridge(req_size=opt.xbar_buffer_size_req,
                                 resp_size=opt.xbar_buffer_size_resp)
                                 for i in range(numx*(numx-1))] 
     
-    # Buffer iterator
-    it = iter(range(len(system.hmc_dev.buffers)))
+        # Buffer iterator
+        it = iter(range(len(system.hmc_dev.buffers)))
+        
+        for i in range(numx): # for each crossbar
+            for j in range(numx): # connect it to every other crossbar
+                # connect xbar to all other xbars except itself
+                if i != j:
+                    # get the next index of buffer
+                    index = it.next()
 
-    # iterate over all the crossbars and connect them as required
-    for i in range(numx): # for each crossbar
-        for j in range(numx): # connect it to every other crossbar
-            # connect xbar to all other xbars except itself
-            if i != j:
-                # get the next index of buffer
-                index = it.next()
+                    # Change the default values for ranges of bridge
+                    system.hmc_dev.buffers[index].ranges = xbar_memranges[j] # This bridge now has access to the memory of the jth crossbar
 
-                # Change the default values for ranges of bridge
-                system.hmc_dev.buffers[index].ranges = system.mem_ranges[j] # This bridge now has access to the memory jth crossbar = jth vault
+                    # Connect the bridge between corssbars ... all crossbars can now drive all other crossbars
+                    system.hmc_dev.xbar[i].master = system.hmc_dev.buffers[index].slave
+                    system.hmc_dev.buffers[index].master = system.hmc_dev.xbar[j].slave                
+                else:
+                    # Don't connect the xbar to itself
+                    pass
 
-                # Connect the bridge between corssbars ... all crossbars can now drive all other crossbars
-                system.hmc_dev.xbar[i].master = system.hmc_dev.buffers[index].slave
-                system.hmc_dev.buffers[index].master = system.hmc_dev.xbar[j].slave                
-            else:
-                # Don't connect the xbar to itself
-                pass
+    elif opt.xbar_type == "ring":
+        #Each crossbar is only connected to their immediate neighbor. One-way ring. Wraps around.
+        system.hmc_dev.buffers = [Bridge(req_size=opt.xbar_buffer_size_req,
+                                resp_size=opt.xbar_buffer_size_resp)
+                                for i in range(numx)] 
+    
+        it = iter(range(len(system.hmc_dev.buffers)))
+        
+        for i in range(numx): # for each crossbar
+            system.hmc_dev.buffers[i].ranges = xbar_memranges[(i+1)%numx] # This bridge now has access to the memory jth crossbar
+            system.hmc_dev.xbar[i].master = system.hmc_dev.buffers[i].slave
+            system.hmc_dev.buffers[i].master = system.hmc_dev.xbar[(i+1)%numx].slave  
+
+    elif opt.xbar_type == "mesh":
+        print("Mesh interconnect not yet implemented.")
 
