@@ -595,8 +595,14 @@ DRAMCtrl::recvTimingReq(PacketPtr pkt)
     panic_if(pkt->cacheResponding(), "Should not see packets where cache "
              "is responding");
 
-    panic_if(!(pkt->isRead() || pkt->isWrite()),
-             "Should only see read and writes at memory controller\n");
+    // panic_if(!(pkt->isRead() || pkt->isWrite()),
+    //          "Should only see read and writes at memory controller\n");
+
+    // PIM Hack: Instead of panicking, just ignore it
+    if (!(pkt->isRead() || pkt->isWrite())){
+        warn("Ignoring extraneous request");
+        return true;
+    }
 
     // Calc avg gap between requests
     if (prevArrival != 0) {
