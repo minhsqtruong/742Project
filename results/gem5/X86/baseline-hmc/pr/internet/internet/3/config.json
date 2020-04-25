@@ -213,7 +213,7 @@
                 "app_path": "/proc", 
                 "name": "redirect_paths0", 
                 "host_paths": [
-                    "./results/gem5/X86/pim-test-multicore/pr/internet/3/fs/proc"
+                    "./results/gem5/X86/baseline-hmc/pr/internet/3/fs/proc"
                 ], 
                 "eventq_index": 0, 
                 "cxx_class": "RedirectPath", 
@@ -224,7 +224,7 @@
                 "app_path": "/sys", 
                 "name": "redirect_paths1", 
                 "host_paths": [
-                    "./results/gem5/X86/pim-test-multicore/pr/internet/3/fs/sys"
+                    "./results/gem5/X86/baseline-hmc/pr/internet/3/fs/sys"
                 ], 
                 "eventq_index": 0, 
                 "cxx_class": "RedirectPath", 
@@ -235,7 +235,7 @@
                 "app_path": "/tmp", 
                 "name": "redirect_paths2", 
                 "host_paths": [
-                    "./results/gem5/X86/pim-test-multicore/pr/internet/3/fs/tmp"
+                    "./results/gem5/X86/baseline-hmc/pr/internet/3/fs/tmp"
                 ], 
                 "eventq_index": 0, 
                 "cxx_class": "RedirectPath", 
