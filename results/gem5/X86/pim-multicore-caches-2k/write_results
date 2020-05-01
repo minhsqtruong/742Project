@@ -1,0 +1,57 @@
+#!/bin/bash
+
+resultsFile=results.txt
+resultsPath=$PWD/results.txt
+touch $resultsFile
+
+echo "" > $resultsPath
+echo "Simulation Time in Seconds" >> $resultsPath
+grep 'sim_seconds' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Host Time in Seconds" >> $resultsPath
+grep 'host_seconds' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Simulation Ticks" >> $resultsPath
+grep 'sim_ticks' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Simulation Operations" >> $resultsPath
+grep 'sim_ops' -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Memory Reads" >> $resultsPath
+grep "system.cpu.*op_class::MemRead" -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Memory Writes" >> $resultsPath
+grep "system.cpu.*op_class::MemWrite" -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Read Requests by Vault" >> $resultsPath
+grep "system.hmc_dev.mem_ctrls.*readReqs" -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Write Requests by Vault" >> $resultsPath
+grep "system.hmc_dev.mem_ctrls.*writeReqs" -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Total Queuing Latency by Vault" >> $resultsPath
+grep "system.hmc_dev.mem_ctrls.*totQLat" -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Total Bus Latency by Vault" >> $resultsPath
+grep "system.hmc_dev.mem_ctrls.*totBusLat" -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Total Access Latency by Vault" >> $resultsPath
+grep "system.hmc_dev.mem_ctrls.*totMemAccLat " -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Read Hit Rate by Vault" >> $resultsPath
+grep "system.hmc_dev.mem_ctrls0.readRowHitRate " -R --exclude=$resultsFile * >> $resultsPath
+
+echo "" >> $resultsPath
+echo "Write Hit Rate by Vault" >> $resultsPath
+grep "system.hmc_dev.mem_ctrls0.writeRowHitRate " -R --exclude=$resultsFile * >> $resultsPath

@@ -1,0 +1,511 @@
+
+Simulation Time in Seconds
+pr/hcircuit/3/stats.txt:sim_seconds                                 28.611631                       # Number of seconds simulated
+pr/internet/3/stats.txt:sim_seconds                                 11.609292                       # Number of seconds simulated
+tc/hcircuit/3/stats.txt:sim_seconds                                 27.336438                       # Number of seconds simulated
+tc/internet/3/stats.txt:sim_seconds                                 11.168500                       # Number of seconds simulated
+write_results:grep 'sim_seconds' -R --exclude=$resultsFile * >> $resultsPath
+
+Host Time in Seconds
+pr/hcircuit/3/stats.txt:host_seconds                                  7086.61                       # Real time elapsed on the host
+pr/internet/3/stats.txt:host_seconds                                  2818.81                       # Real time elapsed on the host
+tc/hcircuit/3/stats.txt:host_seconds                                  7112.19                       # Real time elapsed on the host
+tc/internet/3/stats.txt:host_seconds                                  3038.57                       # Real time elapsed on the host
+write_results:grep 'host_seconds' -R --exclude=$resultsFile * >> $resultsPath
+
+Simulation Ticks
+pr/hcircuit/3/stats.txt:sim_ticks                                28611631434000                       # Number of ticks simulated
+pr/internet/3/stats.txt:sim_ticks                                11609292061000                       # Number of ticks simulated
+tc/hcircuit/3/stats.txt:sim_ticks                                27336438429000                       # Number of ticks simulated
+tc/internet/3/stats.txt:sim_ticks                                11168500080000                       # Number of ticks simulated
+write_results:grep 'sim_ticks' -R --exclude=$resultsFile * >> $resultsPath
+
+Simulation Operations
+pr/hcircuit/3/stats.txt:sim_ops                                    4847870846                       # Number of ops (including micro ops) simulated
+pr/internet/3/stats.txt:sim_ops                                    2004478838                       # Number of ops (including micro ops) simulated
+tc/hcircuit/3/stats.txt:sim_ops                                    4791623982                       # Number of ops (including micro ops) simulated
+tc/internet/3/stats.txt:sim_ops                                    1965767100                       # Number of ops (including micro ops) simulated
+write_results:grep 'sim_ops' -R --exclude=$resultsFile * >> $resultsPath
+
+Memory Reads
+pr/hcircuit/3/stats.txt:system.cpu00.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu01.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu02.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu03.op_class::MemRead              740660871     15.28%     90.30% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu04.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu05.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu06.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu07.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu08.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu09.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu10.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu11.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu12.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu13.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu14.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu15.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu00.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu01.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu02.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu03.op_class::MemRead              304989625     15.22%     90.40% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu04.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu05.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu06.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu07.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu08.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu09.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu10.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu11.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu12.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu13.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu14.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu15.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu00.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu01.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu02.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu03.op_class::MemRead              734490704     15.33%     90.28% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu04.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu05.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu06.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu07.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu08.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu09.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu10.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu11.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu12.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu13.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu14.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu15.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu00.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu01.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu02.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu03.op_class::MemRead              300507027     15.29%     90.39% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu04.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu05.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu06.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu07.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu08.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu09.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu10.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu11.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu12.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu13.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu14.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu15.op_class::MemRead                   1056     10.77%     90.45% # Class of executed instruction
+write_results:grep "system.cpu.*op_class::MemRead" -R --exclude=$resultsFile * >> $resultsPath
+
+Memory Writes
+pr/hcircuit/3/stats.txt:system.cpu00.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu01.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu02.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu03.op_class::MemWrite             455455118      9.40%     99.69% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu04.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu05.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu06.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu07.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu08.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu09.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu10.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu11.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu12.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu13.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu14.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/hcircuit/3/stats.txt:system.cpu15.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu00.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu01.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu02.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu03.op_class::MemWrite             185394260      9.25%     99.65% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu04.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu05.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu06.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu07.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu08.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu09.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu10.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu11.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu12.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu13.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu14.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+pr/internet/3/stats.txt:system.cpu15.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu00.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu01.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu02.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu03.op_class::MemWrite             453502988      9.46%     99.74% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu04.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu05.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu06.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu07.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu08.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu09.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu10.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu11.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu12.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu13.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu14.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/hcircuit/3/stats.txt:system.cpu15.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu00.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu01.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu02.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu03.op_class::MemWrite             184193727      9.37%     99.76% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu04.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu05.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu06.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu07.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu08.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu09.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu10.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu11.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu12.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu13.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu14.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+tc/internet/3/stats.txt:system.cpu15.op_class::MemWrite                   936      9.55%    100.00% # Class of executed instruction
+write_results:grep "system.cpu.*op_class::MemWrite" -R --exclude=$resultsFile * >> $resultsPath
+
+Read Requests by Vault
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.readReqs                  0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.readReqs                 0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.readReqs                 0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.readReqs                 0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.readReqs                 0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.readReqs                 0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.readReqs          363887055                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.readReqs                  0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.readReqs                  0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.readReqs                  0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.readReqs                  0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.readReqs                 0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.readReqs                  0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.readReqs                  0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.readReqs                  0                       # Number of read requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.readReqs                 0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.readReqs                 0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.readReqs                 0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.readReqs                 0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.readReqs                 0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.readReqs          145796508                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.readReqs                 0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.readReqs                  0                       # Number of read requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.readReqs                 0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.readReqs                 0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.readReqs                 0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.readReqs                 0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.readReqs                 0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.readReqs          345796666                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.readReqs                 0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.readReqs                  0                       # Number of read requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.readReqs                 0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.readReqs                 0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.readReqs                 0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.readReqs                 0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.readReqs                 0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.readReqs          141721360                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.readReqs                 0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.readReqs                  0                       # Number of read requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.readReqs                  0                       # Number of read requests accepted
+write_results:grep "system.hmc_dev.mem_ctrls.*readReqs" -R --exclude=$resultsFile * >> $resultsPath
+
+Write Requests by Vault
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.writeReqs                 0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.writeReqs                0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.writeReqs                0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.writeReqs                0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.writeReqs                0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.writeReqs                0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.writeReqs         237207821                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.writeReqs                 0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.writeReqs                 0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.writeReqs                 0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.writeReqs                 0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.writeReqs                0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.writeReqs                 0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.writeReqs                 0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.writeReqs                 0                       # Number of write requests accepted
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.writeReqs                0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.writeReqs                0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.writeReqs                0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.writeReqs                0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.writeReqs                0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.writeReqs          95742780                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.writeReqs                0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.writeReqs                 0                       # Number of write requests accepted
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.writeReqs                0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.writeReqs                0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.writeReqs                0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.writeReqs                0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.writeReqs                0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.writeReqs         229501602                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.writeReqs                0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.writeReqs                 0                       # Number of write requests accepted
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.writeReqs                0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.writeReqs                0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.writeReqs                0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.writeReqs                0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.writeReqs                0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.writeReqs          93271211                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.writeReqs                0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.writeReqs                 0                       # Number of write requests accepted
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.writeReqs                 0                       # Number of write requests accepted
+write_results:grep "system.hmc_dev.mem_ctrls.*writeReqs" -R --exclude=$resultsFile * >> $resultsPath
+
+Total Queuing Latency by Vault
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.totQLat                   0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.totQLat                  0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.totQLat                  0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.totQLat                  0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.totQLat                  0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.totQLat                  0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.totQLat        21980288732500                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.totQLat                   0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.totQLat                   0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.totQLat                   0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.totQLat                   0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.totQLat                  0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.totQLat                   0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.totQLat                   0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.totQLat                   0                       # Total ticks spent queuing
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.totQLat                  0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.totQLat                  0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.totQLat                  0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.totQLat                  0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.totQLat                  0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.totQLat        8971556676700                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.totQLat                  0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.totQLat                   0                       # Total ticks spent queuing
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.totQLat                  0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.totQLat                  0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.totQLat                  0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.totQLat                  0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.totQLat                  0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.totQLat        20791674739200                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.totQLat                  0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.totQLat                   0                       # Total ticks spent queuing
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.totQLat                  0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.totQLat                  0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.totQLat                  0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.totQLat                  0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.totQLat                  0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.totQLat        8466592787900                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.totQLat                  0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.totQLat                   0                       # Total ticks spent queuing
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.totQLat                   0                       # Total ticks spent queuing
+write_results:grep "system.hmc_dev.mem_ctrls.*totQLat" -R --exclude=$resultsFile * >> $resultsPath
+
+Total Bus Latency by Vault
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.totBusLat                0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.totBusLat                0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.totBusLat                0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.totBusLat                0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.totBusLat                0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.totBusLat      2127517635200                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.totBusLat                0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.totBusLat                0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.totBusLat                0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.totBusLat                0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.totBusLat                0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.totBusLat                0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.totBusLat      851183865600                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.totBusLat                0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.totBusLat                 0                       # Total ticks spent in databus transfers
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.totBusLat                0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.totBusLat                0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.totBusLat                0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.totBusLat                0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.totBusLat                0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.totBusLat      2027721513600                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.totBusLat                0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.totBusLat                0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.totBusLat                0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.totBusLat                0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.totBusLat                0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.totBusLat                0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.totBusLat      829738796800                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.totBusLat                0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.totBusLat                 0                       # Total ticks spent in databus transfers
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.totBusLat                 0                       # Total ticks spent in databus transfers
+write_results:grep "system.hmc_dev.mem_ctrls.*totBusLat" -R --exclude=$resultsFile * >> $resultsPath
+
+Total Access Latency by Vault
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.totMemAccLat   30689814051600                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.totMemAccLat   12456090626500                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls3.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls13.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls10.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls11.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls14.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls15.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.totMemAccLat   29092659685500                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls6.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls7.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls4.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls5.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls12.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls8.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls9.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls2.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls1.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls3.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls13.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls10.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls11.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls14.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls15.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.totMemAccLat   11863335987300                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls6.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls7.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls4.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls5.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls12.totMemAccLat             0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls8.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls9.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls2.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls1.totMemAccLat              0                       # Total ticks spent from burst creation until serviced by the DRAM
+write_results:grep "system.hmc_dev.mem_ctrls.*totMemAccLat " -R --exclude=$resultsFile * >> $resultsPath
+
+Read Hit Rate by Vault
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.readRowHitRate         0.00                       # Row buffer hit rate for reads
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.readRowHitRate         0.00                       # Row buffer hit rate for reads
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.readRowHitRate         0.00                       # Row buffer hit rate for reads
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.readRowHitRate         0.00                       # Row buffer hit rate for reads
+write_results:grep "system.hmc_dev.mem_ctrls0.readRowHitRate " -R --exclude=$resultsFile * >> $resultsPath
+
+Write Hit Rate by Vault
+pr/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.writeRowHitRate        20.67                       # Row buffer hit rate for writes
+pr/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.writeRowHitRate        19.48                       # Row buffer hit rate for writes
+tc/hcircuit/3/stats.txt:system.hmc_dev.mem_ctrls0.writeRowHitRate        21.81                       # Row buffer hit rate for writes
+tc/internet/3/stats.txt:system.hmc_dev.mem_ctrls0.writeRowHitRate        21.66                       # Row buffer hit rate for writes
+write_results:grep "system.hmc_dev.mem_ctrls0.writeRowHitRate " -R --exclude=$resultsFile * >> $resultsPath
